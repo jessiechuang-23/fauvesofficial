@@ -175,18 +175,24 @@ input:focus,textarea:focus,select:focus{outline:1px solid #1A1A18;outline-offset
 <label style="display: flex; flex-direction: column; gap: 8px">Interest<select name="interest" style="border: 0; border-bottom: 1px solid #1A1A18; background: transparent; padding: 10px 0; font-size: 14px; text-transform: none; letter-spacing: 0"><option>A private commission</option><option>A commission for a company</option><option>A hotel, residence or interior project</option><option>The Atelier</option><option>An available work</option><option>Gallery or press</option></select></label>
 <label style="display: flex; flex-direction: column; gap: 8px">How you heard of Fauves<input type="text" name="referral" style="border: 0; border-bottom: 1px solid #1A1A18; background: transparent; padding: 10px 0; font-size: 14px; text-transform: none; letter-spacing: 0"></label>
 <label style="display: flex; flex-direction: column; gap: 8px">Tell me a little about yourself (optional)<textarea name="message" rows="4" style="border: 0; border-bottom: 1px solid #1A1A18; background: transparent; padding: 10px 0; font-size: 14px; text-transform: none; letter-spacing: 0; resize: vertical"></textarea></label>
-<button type="submit" style="align-self: center; min-height: 48px; padding: 0 40px; border: 1px solid #1A1A18; background: #1A1A18; color: #F4F3EE; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer">Send privately</button>
+<button type="submit" style="align-self: center; min-height: 48px; padding: 0 40px; border: 1px solid #1A1A18; background: #1A1A18; color: #F4F3EE; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer">Send</button>
 </form>
 <p id="inquiry-thanks" hidden style="margin: 0; text-align: center; color: #4A4945">Thank you. Your note has been received and will be answered personally.</p>
+<p style="margin: 0; text-align: center; color: #6B6A64">Or write directly — <a href="mailto:studio@fauvesofficial.com" style="text-decoration: underline; text-underline-offset: 3px">studio@fauvesofficial.com</a></p>
 </div>
 </section>
 
 <!-- FOOTER -->
-<footer style="border-top: 1px solid #DAD8D0; padding: 20px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px">
-<span>Fauves</span>
-<span style="color: #6B6A64">© 2026 Fauves LLC · All works © Jessie Chuang</span>
-<a href="mailto:studio@fauvesofficial.com">studio@fauvesofficial.com</a>
-<div style="display: flex; gap: 24px"><a href="#top">Privacy</a><a href="#top">(Back to top)</a></div>
+<footer style="border-top: 1px solid #DAD8D0; padding: 0 24px; display: flex; flex-direction: column">
+<div style="padding: 20px 0; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 16px">
+<span style="justify-self: start">Fauves</span>
+<span style="color: #6B6A64; text-align: center">© 2026 Fauves LLC · All works © Jessie Chuang</span>
+<a href="mailto:studio@fauvesofficial.com" style="justify-self: end; text-align: right">studio@fauvesofficial.com</a>
+</div>
+<div style="border-top: 1px solid #DAD8D0; padding: 14px 0 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 10px; color: #6B6A64">
+<a href="#top" style="color: #6B6A64">Privacy Policy</a>
+<a href="#top" style="color: #6B6A64">Back to top ↑</a>
+</div>
 </footer>
 
 </div>
