@@ -1,0 +1,1 @@
+(function(){var p=document.querySelector('.page'),b=document.querySelector('.stamp');if(!p||!b)return;b.addEventListener('click',function(){var o=p.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});})();
