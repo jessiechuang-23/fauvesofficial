@@ -8,6 +8,22 @@
     });
   }
 
+  // a deliberate one-finger sideways swipe; ignores pinches, zoomed-in panning and slow drags
+  var onSwipe = function (el, fn) {
+    var sx = 0, sy = 0, t0 = 0, multi = false;
+    el.addEventListener('touchstart', function (e) {
+      if (e.touches.length > 1) { multi = true; return; }
+      multi = false; sx = e.touches[0].clientX; sy = e.touches[0].clientY; t0 = Date.now();
+    }, { passive: true });
+    el.addEventListener('touchmove', function (e) { if (e.touches.length > 1) multi = true; }, { passive: true });
+    el.addEventListener('touchend', function (e) {
+      if (multi || e.touches.length > 0) return;
+      if (window.visualViewport && window.visualViewport.scale > 1.05) return;
+      var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > 2 * Math.abs(dy) && Date.now() - t0 < 700) fn(dx < 0 ? 1 : -1);
+    });
+  };
+
   // a fading carousel: stage element, its arrow buttons
   var carousel = function (stage, prevBtn, nextBtn) {
     var slides = stage.querySelectorAll('img'), c = { i: 0, moved: false };
@@ -21,13 +37,7 @@
     c.current = function () { return slides[c.i]; };
     prevBtn.addEventListener('click', function () { c.show(c.i - 1); });
     nextBtn.addEventListener('click', function () { c.show(c.i + 1); });
-    var x0 = null;
-    stage.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; c.moved = false; }, { passive: true });
-    stage.addEventListener('touchend', function (e) {
-      if (x0 === null) return;
-      var dx = e.changedTouches[0].clientX - x0; x0 = null;
-      if (Math.abs(dx) > 40) { c.moved = true; c.show(dx < 0 ? c.i + 1 : c.i - 1); setTimeout(function () { c.moved = false; }, 400); }
-    });
+    onSwipe(stage, function (d) { c.moved = true; c.show(c.i + d); setTimeout(function () { c.moved = false; }, 400); });
     c.show(0);
     return c;
   };
@@ -71,13 +81,7 @@
   });
   box.querySelector('.lb-prev').addEventListener('click', function () { turn(-1); });
   box.querySelector('.lb-next').addEventListener('click', function () { turn(1); });
-  var bx = null;
-  box.addEventListener('touchstart', function (e) { bx = e.touches[0].clientX; }, { passive: true });
-  box.addEventListener('touchend', function (e) {
-    if (bx === null) return;
-    var dx = e.changedTouches[0].clientX - bx; bx = null;
-    if (Math.abs(dx) > 40) turn(dx < 0 ? 1 : -1);
-  });
+  onSwipe(box, turn);
   box.querySelector('.close').addEventListener('click', close);
   box.addEventListener('click', function (e) { if (e.target === box) close(); });
   document.addEventListener('keydown', function (e) {
