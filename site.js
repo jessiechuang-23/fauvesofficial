@@ -37,6 +37,7 @@
     var close = function () { box.classList.remove('show'); if (last) last.focus(); };
     document.querySelectorAll('[data-full]').forEach(function (b) {
       b.addEventListener('click', function () {
+        box.classList.remove('book');
         last = b; big.src = b.getAttribute('data-full'); big.alt = b.querySelector('img').alt;
         title.textContent = b.getAttribute('data-title'); box.classList.add('show');
         box.querySelector('.close').focus();
@@ -52,8 +53,29 @@
       stage.addEventListener('touchstart', function () { moved = false; }, { passive: true });
       var openBook = function () {
         var cur = stage.querySelector('img.on');
-        if (cur) open(cur.getAttribute('src'), cur.alt, 'Provenance', stage);
+        if (!cur) return;
+        box.classList.add('book');
+        open(cur.getAttribute('src'), cur.alt, 'Provenance', stage);
       };
+      var turn = function (d) {
+        show(i + d);
+        var cur = stage.querySelector('img.on');
+        big.src = cur.getAttribute('src'); big.alt = cur.alt;
+      };
+      box.querySelector('.lb-prev').addEventListener('click', function () { turn(-1); });
+      box.querySelector('.lb-next').addEventListener('click', function () { turn(1); });
+      var bx = null;
+      box.addEventListener('touchstart', function (e) { bx = e.touches[0].clientX; }, { passive: true });
+      box.addEventListener('touchend', function (e) {
+        if (bx === null || !box.classList.contains('book')) return;
+        var dx = e.changedTouches[0].clientX - bx; bx = null;
+        if (Math.abs(dx) > 40) turn(dx < 0 ? 1 : -1);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (!box.classList.contains('show') || !box.classList.contains('book')) return;
+        if (e.key === 'ArrowLeft') turn(-1);
+        if (e.key === 'ArrowRight') turn(1);
+      });
       stage.addEventListener('click', function () { if (!moved) openBook(); });
       stage.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBook(); }
