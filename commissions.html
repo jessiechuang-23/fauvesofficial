@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap">
-<link rel="stylesheet" href="/site.css?v=5">
+<link rel="stylesheet" href="/site.css?v=6">
 </head>
 <body>
 <div class="page">
@@ -26,7 +26,14 @@
 <main>
 <section class="hero" aria-label="Frame and its book">
 <figure class="work">
-<button type="button" class="zoom" data-full="/frame.jpg" data-title="Frame" aria-label="View Frame larger"><img src="/frame.jpg" alt="Frame, a soft pastel of a sea under a vivid sky, with a red balloon lifting a small white house, an apple and a feather on an orange cloth"></button>
+<div class="fstage" role="button" tabindex="0" aria-label="View Frame larger">
+<img src="/frame.jpg" alt="Frame, a soft pastel of a sea under a vivid sky, with a red balloon lifting a small white house, an apple and a feather on an orange cloth" class="on">
+<img src="/frame-room.jpg" alt="Frame in a gilded frame, hung on a deep blue wall above a stone bench" loading="lazy">
+</div>
+<div class="arrows">
+<button type="button" class="fprev" aria-label="Previous image of Frame"><svg width="24" height="10" viewBox="0 0 24 10" fill="none" aria-hidden="true"><path d="M23 5H1M5 1L1 5l4 4" stroke="currentColor"/></svg></button>
+<button type="button" class="fnext" aria-label="Next image of Frame"><svg width="24" height="10" viewBox="0 0 24 10" fill="none" aria-hidden="true"><path d="M1 5h22M19 1l4 4-4 4" stroke="currentColor"/></svg></button>
+</div>
 <figcaption><h1 class="serif">Frame</h1><span class="label">2026 · Soft pastel · Private collection</span></figcaption>
 </figure>
 <section class="book" aria-roledescription="carousel" aria-label="Provenance: Frame, the book of its making">
@@ -37,6 +44,7 @@
 <img src="/book-4.jpg" alt="A spread with the final composition sketch and the artist's notes">
 <img src="/book-5.jpg" alt="A spread showing the finished work">
 <img src="/book-6.jpg" alt="A spread reading Its new home">
+<img src="/book-7.jpg" alt="Provenance: Frame lying closed on a blue stone table, between a leather sofa and a green velvet chair" loading="lazy">
 </div>
 <div class="arrows">
 <button type="button" class="prev" aria-label="Previous image"><svg width="24" height="10" viewBox="0 0 24 10" fill="none" aria-hidden="true"><path d="M23 5H1M5 1L1 5l4 4" stroke="currentColor"/></svg></button>
@@ -67,6 +75,6 @@
 <button type="button" class="lb-next" aria-label="Next page"><svg width="24" height="10" viewBox="0 0 24 10" fill="none" aria-hidden="true"><path d="M1 5h22M19 1l4 4-4 4" stroke="currentColor"/></svg></button>
 </div>
 </div>
-<script src="/site.js?v=5"></script>
+<script src="/site.js?v=6"></script>
 </body>
 </html>
