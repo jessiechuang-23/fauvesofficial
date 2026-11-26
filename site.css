@@ -49,7 +49,8 @@ a{color:#1A1A18;text-decoration:none}a:hover{color:#6B6A64}
 .work figcaption{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
 .work h1{margin:0;font-size:34px;line-height:1.15}
 .book{display:flex;flex-direction:column;align-items:center;gap:22px}
-.stage{position:relative;width:min(34vw,440px);height:min(36vh,340px);touch-action:pan-y}
+.zoom{background:transparent;border:0;padding:0;cursor:zoom-in;display:block;max-width:100%}
+.stage{cursor:zoom-in;outline-offset:6px;position:relative;width:min(34vw,440px);height:min(36vh,340px);touch-action:pan-y}
 .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 600ms ease}
 .stage img.on{opacity:1}
 .arrows{display:flex;gap:8px}

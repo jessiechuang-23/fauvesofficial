@@ -30,7 +30,7 @@
     show(0);
   }
 
-  // lightbox for the collection
+  // lightbox for Frame, the book and the collection
   var box = document.querySelector('.lightbox');
   if (box) {
     var big = box.querySelector('img'), title = box.querySelector('.t'), last = null;
@@ -42,6 +42,23 @@
         box.querySelector('.close').focus();
       });
     });
+    var open = function (src, alt, t, from) {
+      last = from; big.src = src; big.alt = alt; title.textContent = t;
+      box.classList.add('show'); box.querySelector('.close').focus();
+    };
+    if (stage) {
+      var moved = false;
+      stage.addEventListener('touchmove', function () { moved = true; }, { passive: true });
+      stage.addEventListener('touchstart', function () { moved = false; }, { passive: true });
+      var openBook = function () {
+        var cur = stage.querySelector('img.on');
+        if (cur) open(cur.getAttribute('src'), cur.alt, 'Provenance', stage);
+      };
+      stage.addEventListener('click', function () { if (!moved) openBook(); });
+      stage.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openBook(); }
+      });
+    }
     box.querySelector('.close').addEventListener('click', close);
     box.addEventListener('click', function (e) { if (e.target === box) close(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && box.classList.contains('show')) close(); });
